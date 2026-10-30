@@ -8,152 +8,148 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #f1f5f9;
-      color: #1e293b;
+      background-color: #f8fafc;
+      color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     .clean-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    /* მკაცრად გვერდიგვერდ 2 სვეტი როგორც კომპიუტერზე, ისე ტელეფონში */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1.1fr 2.2fr;
+      gap: 0.75rem;
+      min-height: calc(100vh - 90px);
     }
     .progress-bar {
       transition: width 0.1s linear;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col p-4 md:p-6">
+<body class="min-h-screen flex flex-col p-2 md:p-6">
 
-  <!-- ზედა პანელი: როლები და მართვა -->
-  <header class="clean-card p-4 md:p-5 mb-5 flex flex-wrap justify-between items-center gap-4">
-    <div class="flex items-center gap-3.5">
-      <div class="w-11 h-11 rounded-2xl bg-slate-900 flex items-center justify-center text-white font-bold text-lg shadow-md">
+  <!-- ზედა პანელი: სათაური და მხოლოდ დამატების ღილაკი -->
+  <header class="clean-card p-3 md:p-4 mb-3 flex justify-between items-center gap-2">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-sm shadow-sm">
         სპ
       </div>
       <div>
-        <h1 class="font-bold text-base tracking-wide text-slate-800">სკოლების ციფრული მონიტორინგი</h1>
-        <p class="text-xs text-slate-500">განათლების სამინისტროს ერთიანი დაფა</p>
+        <h1 class="font-bold text-xs md:text-base tracking-wide text-slate-800">სკოლების მონიტორინგი</h1>
+        <p class="text-[10px] text-slate-500">ერთიანი ციფრული დაფა</p>
       </div>
-    </div>
-
-    <!-- როლების გადამრთველი -->
-    <div class="flex items-center bg-slate-100 p-1.5 rounded-2xl border border-slate-200 gap-1.5">
-      <button onclick="setRole('ministry')" id="btn-ministry" class="px-4 py-2 rounded-xl text-xs font-semibold transition bg-slate-900 text-white shadow-sm">
-        <i class="fa-solid fa-landmark mr-1.5"></i> სამინისტრო
-      </button>
-      <button onclick="setRole('resource')" id="btn-resource" class="px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-slate-900">
-        <i class="fa-solid fa-building-columns mr-1.5"></i> რესურსცენტრი
-      </button>
-      <button onclick="setRole('director')" id="btn-director" class="px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-slate-900">
-        <i class="fa-solid fa-school mr-1.5"></i> დირექტორი
-      </button>
     </div>
 
     <!-- ინფორმაციის დამატების ღილაკი -->
-    <button onclick="openModal()" class="px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-2xl transition flex items-center gap-2 shadow-md shadow-indigo-100">
-      <i class="fa-solid fa-plus-circle text-sm"></i> ინფორმაციის დამატება
+    <button onclick="openModal()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] md:text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-sm">
+      <i class="fa-solid fa-plus-circle"></i> ინფორმაციის დამატება
     </button>
   </header>
 
-  <!-- ძირითადი კონტენტი: გვერდიგვერდ 2 სვეტი -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+  <!-- ძირითადი კონტენტი: მკაცრად გვერდიგვერდ 2 სვეტი -->
+  <div class="grid-container flex-1">
     
-    <!-- მარცხენა სვეტი: ზარების განრიგი (4 სვეტი) -->
-    <div class="lg:col-span-4 clean-card p-5 md:p-6 flex flex-col justify-between">
+    <!-- მარცხენა სვეტი: ზარების განრიგი + QR კოდი -->
+    <div class="clean-card p-3 md:p-4 flex flex-col justify-between">
       <div>
-        <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200">
-              <i class="fa-regular fa-clock"></i>
-            </div>
-            <h2 class="font-bold text-sm md:text-base tracking-wide text-slate-800">ზარების განრიგი</h2>
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-clock text-slate-700 text-xs"></i>
+            <h2 class="font-bold text-[11px] md:text-sm text-slate-800">ზარების განრიგი</h2>
           </div>
-          <span class="text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">აქტიური</span>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">აქტიური</span>
         </div>
 
-        <div class="space-y-2 text-xs md:text-sm">
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">1. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">08:45 - 09:25</span>
+        <div class="space-y-1 text-[10px] md:text-xs">
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">1. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">08:45-09:25</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">2. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">09:30 - 10:10</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">2. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">09:30-10:10</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">3. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">10:15 - 10:55</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">3. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">10:15-10:55</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">4. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">11:05 - 11:45</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">4. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">11:05-11:45</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">5. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">11:50 - 12:30</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">5. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">11:50-12:30</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">6. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">12:35 - 13:15</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">6. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">12:35-13:15</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">7. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">13:20 - 14:00</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">7. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">13:20-14:00</span>
           </div>
-          <div class="flex justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-700 font-medium">8. გაკვეთილი</span>
-            <span class="font-mono text-slate-900 font-semibold">14:05 - 14:45</span>
+          <div class="flex justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+            <span class="text-slate-700 font-medium">8. გაკვ.</span>
+            <span class="font-mono text-slate-900 font-semibold">14:05-14:45</span>
           </div>
         </div>
       </div>
 
-      <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
-        <span>სასწავლო პროცესი</span>
-        <span id="current-school-badge" class="text-slate-800 font-semibold">საქართველოს სკოლები</span>
+      <!-- QR კოდი ქვემოთ -->
+      <div class="mt-3 pt-2.5 border-t-2 border-slate-300 flex items-center gap-2 bg-slate-50 p-2 rounded-xl border-2 border-slate-300">
+        <img id="qr-code-img" src="" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 border border-slate-300">
+        <div class="text-[9px] text-slate-600 leading-tight">
+          <p class="font-bold text-slate-800 text-[10px]">QR დასკანირება</p>
+          <p class="text-slate-500 mt-0.5">გახსენით ტელეფონში</p>
+        </div>
       </div>
     </div>
 
-    <!-- მარჯვენა სვეტი: FRONT საინფორმაციო დაფა (8 სვეტი) -->
-    <div class="lg:col-span-8 clean-card p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
+    <!-- მარჯვენა სვეტი: FRONT საინფორმაციო დაფა -->
+    <div class="clean-card p-3 md:p-5 flex flex-col justify-between relative overflow-hidden">
       
       <!-- ზედა პანელი: ლოგო, ხმა და Fullscreen -->
-      <div class="flex justify-between items-center pb-4 border-b border-slate-100 gap-4">
-        <div class="flex items-center gap-3.5">
-          <img id="school-logo" src="https://via.placeholder.com/44" alt="Logo" class="w-11 h-11 rounded-2xl object-cover border border-slate-200 shadow-sm">
+      <div class="flex justify-between items-center pb-2.5 border-b border-slate-100 gap-2">
+        <div class="flex items-center gap-2">
+          <img id="school-logo" src="https://via.placeholder.com/32" alt="Logo" class="w-8 h-8 rounded-xl object-cover border border-slate-200">
           <div>
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span class="text-[10px] font-bold tracking-wider text-slate-400 uppercase">FRONT მონიტორი</span>
+            <div class="flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-[8px] font-bold tracking-wider text-slate-400 uppercase">FRONT მონიტორი</span>
             </div>
-            <h2 id="display-school-name" class="font-bold text-sm md:text-base text-slate-800">ცენტრალური საინფორმაციო დაფა</h2>
+            <h2 id="display-school-name" class="font-bold text-[11px] md:text-xs text-slate-800 truncate max-w-[120px] md:max-w-none">ცენტრალური დაფა</h2>
           </div>
         </div>
 
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center gap-1.5">
           <!-- ხმის ტოგლი -->
-          <button onclick="toggleAudio()" id="audio-btn" class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 transition shadow-sm">
-            <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
+          <button onclick="toggleAudio()" id="audio-btn" class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 transition shadow-sm">
+            <i class="fa-solid fa-volume-xmark text-[11px]" id="audio-icon"></i>
           </button>
           <!-- Full Screen ღილაკი -->
-          <button onclick="toggleFullScreen()" class="px-4 py-2.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 hover:text-slate-900 flex items-center gap-2 transition shadow-sm">
-            <i class="fa-solid fa-expand"></i> Full Screen
+          <button onclick="toggleFullScreen()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-[10px] font-semibold text-slate-700 hover:text-slate-900 flex items-center gap-1 transition shadow-sm">
+            <i class="fa-solid fa-expand text-[10px]"></i> <span class="hidden md:inline">Full Screen</span>
           </button>
         </div>
       </div>
 
       <!-- სლაიდერის კონტენტი -->
-      <div id="slide-container" class="flex-1 flex flex-col justify-center items-center text-center p-6 md:p-12">
+      <div id="slide-container" class="flex-1 flex flex-col justify-center items-center text-center p-3">
         <!-- დინამიური სლაიდი -->
       </div>
 
       <!-- ქვედა პროგრეს ბარი (10 წამი) -->
-      <div class="mt-6 pt-4 border-t border-slate-100">
-        <div class="flex justify-between text-xs text-slate-500 mb-2">
-          <span id="slide-category" class="px-3 py-1 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-100 font-semibold">სიახლე</span>
+      <div class="mt-3 pt-2.5 border-t border-slate-100">
+        <div class="flex justify-between text-[10px] text-slate-500 mb-1">
+          <span id="slide-category" class="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-600 border border-indigo-100 font-semibold">სიახლე</span>
           <span id="timer-text" class="font-mono text-slate-700 font-bold">10 წმ</span>
         </div>
-        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden border border-slate-200">
+        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200">
           <div id="progress" class="bg-indigo-600 h-full w-0 progress-bar"></div>
         </div>
       </div>
@@ -162,69 +158,85 @@
 
   </div>
 
-  <!-- ინფორმაციის დამატების დიდი ფანჯარა (Modal) -->
-  <div id="info-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="clean-card w-full max-w-3xl p-6 md:p-8 border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto bg-white">
-      <div class="flex justify-between items-center pb-4 mb-6 border-b border-slate-100">
-        <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2.5">
-          <i class="fa-solid fa-shield-halved text-indigo-600"></i> უსაფრთხოების პინი და ინფორმაციის მართვა
+  <!-- ინფორმაციის დამატების ფანჯარა (Modal) -->
+  <div id="info-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2">
+    <div class="clean-card w-full max-w-xl p-4 md:p-6 border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto bg-white">
+      <div class="flex justify-between items-center pb-2.5 mb-3 border-b border-slate-100">
+        <h3 class="font-bold text-sm md:text-base text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-indigo-600"></i> ინფორმაციის მართვა და ავტორიზაცია
         </h3>
-        <button onclick="closeModal()" class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition">
-          <i class="fa-solid fa-xmark text-lg"></i>
+        <button onclick="closeModal()" class="w-7 h-7 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
 
-      <div class="space-y-5">
+      <div class="space-y-3 text-xs">
+        <!-- როლის არჩევა მოდალში -->
+        <div>
+          <label class="block text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1">აირჩიეთ როლი:</label>
+          <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 gap-1">
+            <button onclick="setRole('ministry')" id="btn-ministry" class="flex-1 py-1 rounded-lg text-[11px] font-semibold transition bg-slate-900 text-white shadow-sm">
+              სამინისტრო
+            </button>
+            <button onclick="setRole('resource')" id="btn-resource" class="flex-1 py-1 rounded-lg text-[11px] font-semibold transition text-slate-600 hover:text-slate-900">
+              რესურსცენტრი
+            </button>
+            <button onclick="setRole('director')" id="btn-director" class="flex-1 py-1 rounded-lg text-[11px] font-semibold transition text-slate-600 hover:text-slate-900">
+              დირექტორი
+            </button>
+          </div>
+        </div>
+
         <!-- პასკოდის შეყვანის ველი -->
-        <div class="p-4 rounded-2xl bg-indigo-50/60 border border-indigo-100 space-y-2">
-          <label class="block text-xs font-bold text-indigo-900 uppercase tracking-wider">შეიყვანეთ შესაბამისი როლის პასკოდი (PIN):</label>
-          <div class="flex gap-3">
-            <input type="password" id="passcode-input" placeholder="****" maxlength="4" class="w-40 bg-white border border-indigo-200 rounded-xl px-4 py-2.5 text-center font-mono text-lg text-slate-900 tracking-widest focus:outline-none focus:border-indigo-500 shadow-sm">
-            <span class="text-xs text-slate-500 self-center">(სამინისტრო-1111, რესურსცენტრი-2222, დირექტორი-3333)</span>
+        <div class="p-2.5 rounded-xl bg-indigo-50/60 border border-indigo-100 space-y-1">
+          <label class="block text-[10px] font-bold text-indigo-900 uppercase tracking-wider">პასკოდი (PIN):</label>
+          <div class="flex gap-2">
+            <input type="password" id="passcode-input" placeholder="****" maxlength="4" class="w-28 bg-white border border-indigo-200 rounded-xl px-2.5 py-1.5 text-center font-mono text-sm text-slate-900 tracking-widest focus:outline-none focus:border-indigo-500 shadow-sm">
+            <span class="text-[10px] text-slate-500 self-center">(სამინისტრო-1111, რესურსცენტრი-2222, დირექტორი-3333)</span>
           </div>
         </div>
 
         <!-- როლების სრული გეოგრაფიული ფილტრები -->
-        <div id="role-admin-panel" class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-4"></div>
+        <div id="role-admin-panel" class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5"></div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">ინფორმაციის სათაური</label>
-          <input type="text" id="new-title" placeholder="მაგ: მოსწავლეთა რეგისტრაციის დაწყება..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 transition shadow-sm">
+          <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">სათაური</label>
+          <input type="text" id="new-title" placeholder="მაგ: მოსწავლეთა რეგისტრაციის დაწყება..." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-500 shadow-sm">
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">ტექსტი / აღწერა</label>
-          <textarea id="new-text" rows="3" placeholder="შეიყვანეთ დეტალური ინფორმაცია..." class="w-full bg-white border border-slate-200 rounded-xl p-4 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 transition shadow-sm"></textarea>
+          <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">ტექსტი / აღწერა</label>
+          <textarea id="new-text" rows="2" placeholder="შეიყვანეთ დეტალური ინფორმაცია..." class="w-full bg-white border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 focus:outline-none focus:border-indigo-500 shadow-sm"></textarea>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
-            <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">კატეგორია</label>
-            <select id="new-category" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-3 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 transition shadow-sm">
+            <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">კატეგორია</label>
+            <select id="new-category" class="w-full bg-white border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-800 shadow-sm">
               <option value="სიახლე">სიახლე</option>
               <option value="განცხადება">განცხადება</option>
               <option value="ღონისძიება">ღონისძიება</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">სკოლის ლოგო (URL)</label>
-            <input type="text" id="new-logo" placeholder="https://..." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-3 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 transition shadow-sm">
+            <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">ლოგო (URL)</label>
+            <input type="text" id="new-logo" placeholder="https://..." class="w-full bg-white border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-800 shadow-sm">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">საუნდის არჩევა (დიდხნიანი)</label>
-            <select id="new-sound" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-3 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 transition shadow-sm">
-              <option value="bell">დიდხნიანი მელოდიური ზარი (Bell)</option>
-              <option value="chime">მსუბუქი ხანგრძლივი ჰარმონია (Chime)</option>
-              <option value="digital">ციფრული სიგნალის აკორდი (Digital)</option>
-              <option value="none">საუნდის გარეშე (Silent)</option>
+            <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">დიდხნიანი საუნდი</label>
+            <select id="new-sound" class="w-full bg-white border border-slate-200 rounded-xl px-2 py-2 text-xs text-slate-800 shadow-sm">
+              <option value="bell">მელოდიური ზარი (Bell)</option>
+              <option value="chime">მსუბუქი ჰარმონია (Chime)</option>
+              <option value="digital">ციფრული აკორდი (Digital)</option>
+              <option value="none">უხმო (Silent)</option>
             </select>
           </div>
         </div>
       </div>
 
-      <div class="flex justify-end gap-3 mt-8 pt-4 border-t border-slate-100">
-        <button onclick="closeModal()" class="px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-sm font-bold transition text-slate-700">გაუქმება</button>
-        <button onclick="saveInformation()" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-sm font-bold transition text-white shadow-md">გაგზავნა და განახლება</button>
+      <div class="flex justify-end gap-2 mt-5 pt-2.5 border-t border-slate-100">
+        <button onclick="closeModal()" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 transition">გაუქმება</button>
+        <button onclick="saveInformation()" class="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-bold text-white shadow-sm">გაგზავნა</button>
       </div>
     </div>
   </div>
@@ -242,9 +254,9 @@
     const regionsData = {
       "სამეგრელო-ზემო სვანეთი": {
         "ფოთი": ["ფოთის N1 საჯარო სკოლა", "ფოთის N2 საჯარო სკოლა", "ფოთის N3 საჯარო სკოლა", "ფოთის N4 საჯარო სკოლა"],
-        "ზუგდიდი": ["ზუგდიდის N1 საჯარო სკოლა", "ზუგდიდის N2 საჯარო სკოლა", "ზუგდიდის N3 საჯარო სკოლა"],
-        "სენაკი": ["სენაკის N1 საჯარო სკოლა", "სენაკის N2 საჯარო სკოლა"],
-        "ხობი": ["ხობის N1 საჯარო სკოლა", "ხობის N2 საჯარო სკოლა"],
+        "ზუგდიდი": ["ზუგდიდის N1 საჯარო სკოლა", "ზუგდიდის N2 საჯარო სკოლა"],
+        "სენაკი": ["სენაკის N1 საჯარო სკოლა"],
+        "ხობი": ["ხობის N1 საჯარო სკოლა"],
         "აბაშა": ["აბაშის N1 საჯარო სკოლა"],
         "მარტვილი": ["მარტვილის N1 საჯარო სკოლა"],
         "წალენჯიხა": ["წალენჯიხის N1 საჯარო სკოლა"],
@@ -252,53 +264,20 @@
       },
       "თბილისი": {
         "მთაწმინდა": ["თბილისის N1 საჯარო სკოლა", "თბილისის N5 საჯარო სკოლა"],
-        "ვაკე": ["თბილისის N51 საჯარო სკოლა", "თბილისის N55 საჯარო სკოლა"],
-        "საბურთალო": ["თბილისის N60 საჯარო სკოლა", "თბილისის N126 საჯარო სკოლა"],
-        "გლდანი": ["თბილისის N175 საჯარო სკოლა", "თბილისის N191 საჯარო სკოლა"]
+        "ვაკე": ["თბილისის N51 საჯარო სკოლა"],
+        "საბურთალო": ["თბილისის N60 საჯარო სკოლა"]
       },
-      "აჭარის ავტონომიური რესპუბლიკა": {
-        "ბათუმი": ["ბათუმის N1 საჯარო სკოლა", "ბათუმის N2 საჯარო სკოლა", "ბათუმის N3 საჯარო სკოლა"],
-        "ქობულეთი": ["ქობულეთის N1 საჯარო სკოლა", "ქობულეთის N2 საჯარო სკოლა"],
-        "ხელვაჩაური": ["ხელვაჩაურის საჯარო სკოლა"]
+      "აჭარა": {
+        "ბათუმი": ["ბათუმის N1 საჯარო სკოლა", "ბათუმის N2 საჯარო სკოლა"],
+        "ქობულეთი": ["ქობულეთის N1 საჯარო სკოლა"]
       },
       "იმერეთი": {
-        "ქუთაისი": ["ქუთაისის N1 საჯარო სკოლა", "ქუთაისის N2 საჯარო სკოლა", "ქუთაისის N3 საჯარო სკოლა"],
-        "ტყიბული": ["ტყიბულის N1 საჯარო სკოლა"],
-        "ზესტაფონი": ["ზესტაფონის N1 საჯარო სკოლა", "ზესტაფონის N2 საჯარო სკოლა"],
-        "სამტრედია": ["სამტრედიის N1 საჯარო სკოლა"]
+        "ქუთაისი": ["ქუთაისის N1 საჯარო სკოლა", "ქუთაისის N2 საჯარო სკოლა"],
+        "ზესტაფონი": ["ზესტაფონის N1 საჯარო სკოლა"]
       },
       "კახეთი": {
-        "თელავი": ["თელავის N1 საჯარო სკოლა", "თელავის N2 საჯარო სკოლა"],
-        "გურჯაანი": ["გურჯაანის N1 საჯარო სკოლა"],
-        "საგარეჯო": ["საგარეჯოს N1 საჯარო სკოლა"],
-        "ყვარელი": ["ყვარლის N1 საჯარო სკოლა"]
-      },
-      "ქვემო ქართლი": {
-        "რუსთავი": ["რუსთავის N1 საჯარო სკოლა", "რუსთავის N2 საჯარო სკოლა", "რუსთავის N3 საჯარო სკოლა"],
-        "მარნეული": ["მარნეულის N1 საჯარო სკოლა", "მარნეულის N2 საჯარო სკოლა"],
-        "ბოლნისი": ["ბოლნისის N1 საჯარო სკოლა"]
-      },
-      "შიდა ქართლი": {
-        "გორი": ["გორის N1 საჯარო სკოლა", "გორის N2 საჯარო სკოლა", "გორის N3 საჯარო სკოლა"],
-        "კასპი": ["კასპის N1 საჯარო სკოლა"],
-        "ქარელი": ["ქარელის N1 საჯარო სკოლა"],
-        "ხაშური": ["ხაშურის N1 საჯარო სკოლა"]
-      },
-      "გურია": {
-        "ოზურგეთი": ["ოზურგეთის N1 საჯარო სკოლა", "ოზურგეთის N2 საჯარო სკოლა"],
-        "ლანჩხუთი": ["ლანჩხუთის N1 საჯარო სკოლა"],
-        "ჩოხატაური": ["ჩოხატაურის N1 საჯარო სკოლა"]
-      },
-      "რაჭა-ლეჩხუმი და ქვემო სვანეთი": {
-        "ამბროლაური": ["ამბროლაურის საჯარო სკოლა"],
-        "ონი": ["ონის საჯარო სკოლა"],
-        "ცაგერი": ["ცაგერის საჯარო სკოლა"]
-      },
-      "სამცხე-ჯავახეთი": {
-        "ახალციხე": ["ახალციხის N1 საჯარო სკოლა", "ახალციხის N2 საჯარო სკოლა"],
-        "ბორჯომი": ["ბორჯომის N1 საჯარო სკოლა", "ბორჯომის N2 საჯარო სკოლა"],
-        "ახალქალაქი": ["ახალქალაქის N1 საჯარო სკოლა"],
-        "ნინოწმინდა": ["ნინოწმინდის N1 საჯარო სკოლა"]
+        "თელავი": ["თელავის N1 საჯარო სკოლა"],
+        "გურჯაანი": ["გურჯაანის N1 საჯარო სკოლა"]
       }
     };
 
@@ -317,68 +296,74 @@
     const duration = 10000;
     const interval = 100;
 
-    function setRole(role) {
-      currentRole = role;
-      document.getElementById('btn-ministry').className = role === 'ministry' ? 'px-4 py-2 rounded-xl text-xs font-semibold transition bg-slate-900 text-white shadow-sm' : 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-slate-900';
-      document.getElementById('btn-resource').className = role === 'resource' ? 'px-4 py-2 rounded-xl text-xs font-semibold transition bg-slate-900 text-white shadow-sm' : 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-slate-900';
-      document.getElementById('btn-director').className = role === 'director' ? 'px-4 py-2 rounded-xl text-xs font-semibold transition bg-slate-900 text-white shadow-sm' : 'px-4 py-2 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-slate-900';
+    function generateQRCode() {
+      const currentUrl = "https://skolebi.netlify.app";
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}`;
+      document.getElementById('qr-code-img').src = qrApiUrl;
     }
 
-    function openModal() {
+    function setRole(role) {
+      currentRole = role;
+      document.getElementById('btn-ministry').className = role === 'ministry' ? 'flex-1 py-1 rounded-lg text-[11px] font-semibold transition bg-slate-900 text-white shadow-sm' : 'flex-1 py-1 rounded-lg text-[11px] font-semibold transition text-slate-600 hover:text-slate-900';
+      document.getElementById('btn-resource').className = role === 'resource' ? 'flex-1 py-1 rounded-lg text-[11px] font-semibold transition bg-slate-900 text-white shadow-sm' : 'flex-1 py-1 rounded-lg text-[11px] font-semibold transition text-slate-600 hover:text-slate-900';
+      document.getElementById('btn-director').className = role === 'director' ? 'flex-1 py-1 rounded-lg text-[11px] font-semibold transition bg-slate-900 text-white shadow-sm' : 'flex-1 py-1 rounded-lg text-[11px] font-semibold transition text-slate-600 hover:text-slate-900';
+      
+      renderRoleAdminPanel();
+    }
+
+    function renderRoleAdminPanel() {
       const panel = document.getElementById('role-admin-panel');
       panel.innerHTML = '';
-      document.getElementById('passcode-input').value = '';
 
       if (currentRole === 'ministry') {
-        let regionOptions = '<option value="all">ყველა რეგიონი (მთელი ქვეყანა)</option>';
+        let regionOptions = '<option value="all">ყველა რეგიონი</option>';
         for (let reg in regionsData) {
           regionOptions += `<option value="${reg}">${reg}</option>`;
         }
 
         panel.innerHTML = `
-          <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">სამინისტრო - აირჩიეთ რეგიონი, ქალაქი და სკოლა:</label>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <select id="select-region" onchange="updateCities()" class="bg-white border border-slate-200 rounded-xl p-3 text-xs text-slate-800 shadow-sm">
+          <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">სამინისტრო - რეგიონი, ქალაქი, სკოლა:</label>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-1.5">
+            <select id="select-region" onchange="updateCities()" class="bg-white border border-slate-200 rounded-xl p-2 text-[11px] text-slate-800 shadow-sm">
               ${regionOptions}
             </select>
-            <select id="select-city" onchange="updateSchools()" class="bg-white border border-slate-200 rounded-xl p-3 text-xs text-slate-800 shadow-sm">
+            <select id="select-city" onchange="updateSchools()" class="bg-white border border-slate-200 rounded-xl p-2 text-[11px] text-slate-800 shadow-sm">
               <option value="all">ყველა ქალაქი</option>
             </select>
-            <select id="select-school" class="bg-white border border-slate-200 rounded-xl p-3 text-xs text-slate-800 shadow-sm">
+            <select id="select-school" class="bg-white border border-slate-200 rounded-xl p-2 text-[11px] text-slate-800 shadow-sm">
               <option value="all">ყველა სკოლა</option>
             </select>
           </div>
         `;
       } else if (currentRole === 'resource') {
         panel.innerHTML = `
-          <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">რესურსცენტრი - აირჩიეთ ქალაქი და სკოლა:</label>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <select id="res-city" onchange="updateResourceSchools()" class="bg-white border border-slate-200 rounded-xl p-3 text-xs text-slate-800 shadow-sm">
+          <label class="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-1">რესურსცენტრი - ქალაქი და სკოლა:</label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+            <select id="res-city" onchange="updateResourceSchools()" class="bg-white border border-slate-200 rounded-xl p-2 text-[11px] text-slate-800 shadow-sm">
               <option value="ფოთი">ფოთი</option>
               <option value="ზუგდიდი">ზუგდიდი</option>
               <option value="ბათუმი">ბათუმი</option>
               <option value="ქუთაისი">ქუთაისი</option>
-              <option value="თელავი">თელავი</option>
-              <option value="რუსთავი">რუსთავი</option>
-              <option value="გორი">გორი</option>
             </select>
-            <select id="select-school" class="bg-white border border-slate-200 rounded-xl p-3 text-xs text-slate-800 shadow-sm">
+            <select id="select-school" class="bg-white border border-slate-200 rounded-xl p-2 text-[11px] text-slate-800 shadow-sm">
               <option value="all">ქალაქის ყველა სკოლა</option>
               <option value="ფოთის N1 საჯარო სკოლა">ფოთის N1 საჯარო სკოლა</option>
               <option value="ფოთის N2 საჯარო სკოლა">ფოთის N2 საჯარო სკოლა</option>
-              <option value="ფოთის N3 საჯარო სკოლა">ფოთის N3 საჯარო სკოლა</option>
-              <option value="ფოთის N4 საჯარო სკოლა">ფოთის N4 საჯარო სკოლა</option>
             </select>
           </div>
         `;
       } else {
         panel.innerHTML = `
-          <div class="text-xs text-indigo-900 bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
-            <i class="fa-solid fa-circle-info mr-1.5"></i> დირექტორის რეჟიმი: ინფორმაცია გაიგზავნება <b>მხოლოდ თქვენს სკოლაში</b>.
+          <div class="text-[10px] text-indigo-900 bg-indigo-50 p-2.5 rounded-xl border border-indigo-100">
+            <i class="fa-solid fa-circle-info mr-1"></i> დირექტორის რეჟიმი: ინფორმაცია გაიგზავნება <b>მხოლოდ თქვენს სკოლაში</b>.
           </div>
         `;
       }
+    }
 
+    function openModal() {
+      document.getElementById('passcode-input').value = '';
+      setRole('ministry');
       document.getElementById('info-modal').classList.remove('hidden');
     }
 
@@ -435,7 +420,7 @@
     function saveInformation() {
       const enteredCode = document.getElementById('passcode-input').value;
       if (enteredCode !== passcodes[currentRole]) {
-        alert('არასწორი პასკოდი! (PIN კოდი არ ემთხვევა არჩეულ როლს)');
+        alert('არასწორი პასკოდი!');
         return;
       }
 
@@ -446,14 +431,14 @@
       const sound = document.getElementById('new-sound').value;
 
       if (!title || !text) {
-        alert('გთხოვთ შეავსოთ სათაური და ტექსტი!');
+        alert('შეავსეთ სათაური და ტექსტი!');
         return;
       }
 
       let targetSchool = "საქართველოს სკოლები";
       const schEl = document.getElementById('select-school');
       if (schEl) {
-        targetSchool = schEl.value === 'all' ? 'არჩეული რეგიონი / ქალაქი' : schEl.value;
+        targetSchool = schEl.value === 'all' ? 'არჩეული რეგიონი' : schEl.value;
       }
 
       slides.push({
@@ -469,17 +454,15 @@
       }
 
       document.getElementById('display-school-name').innerText = targetSchool;
-      document.getElementById('current-school-badge').innerText = targetSchool;
 
       closeModal();
-      alert('პასკოდი სწორია! ინფორმაცია წარმატებით გაიგზავნა.');
+      alert('ინფორმაცია წარმატებით გაიგზავნა!');
     }
 
     function playSelectedSound(soundType) {
       if (!isAudioOn || soundType === 'none') return;
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
         if (soundType === 'bell') {
           const notes = [587.33, 880, 783.99, 659.25];
           notes.forEach((freq, idx) => {
@@ -487,12 +470,10 @@
             let gain = audioCtx.createGain();
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-            
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (idx * 0.7));
             gain.gain.setValueAtTime(0.1, audioCtx.currentTime + (idx * 0.7));
             gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + (idx * 0.7) + 1.5);
-            
             osc.start(audioCtx.currentTime + (idx * 0.7));
             osc.stop(audioCtx.currentTime + (idx * 0.7) + 1.5);
           });
@@ -501,13 +482,11 @@
           let gain = audioCtx.createGain();
           osc.connect(gain);
           gain.connect(audioCtx.destination);
-          
           osc.type = 'triangle';
           osc.frequency.setValueAtTime(440, audioCtx.currentTime);
           osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 1.5);
           gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
           gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.0);
-          
           osc.start();
           osc.stop(audioCtx.currentTime + 3.0);
         } else if (soundType === 'digital') {
@@ -515,21 +494,16 @@
           let gain = audioCtx.createGain();
           osc.connect(gain);
           gain.connect(audioCtx.destination);
-          
           osc.type = 'square';
           osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
           osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.5);
           osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 1.0);
-          
           gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
           gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
-          
           osc.start();
           osc.stop(audioCtx.currentTime + 2.5);
         }
-      } catch (e) {
-        console.log("Audio error:", e);
-      }
+      } catch (e) {}
     }
 
     function renderSlide() {
@@ -538,9 +512,9 @@
       
       document.getElementById('slide-category').innerText = slide.tag;
       container.innerHTML = `
-        <span class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-4 border border-slate-200 shadow-sm">${slide.school || 'ზოგადი'}</span>
-        <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-3 tracking-tight">${slide.title}</h3>
-        <p class="text-slate-600 text-sm md:text-base max-w-xl leading-relaxed">${slide.text}</p>
+        <span class="px-3 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] md:text-xs font-semibold mb-2 border border-slate-200 shadow-sm">${slide.school || 'ზოგადი'}</span>
+        <h3 class="text-xs md:text-lg font-bold text-slate-800 mb-1 tracking-tight">${slide.title}</h3>
+        <p class="text-slate-600 text-[10px] md:text-xs max-w-md leading-relaxed">${slide.text}</p>
       `;
 
       playSelectedSound(slide.sound || 'bell');
@@ -548,6 +522,7 @@
 
     function startTimer() {
       renderSlide();
+      generateQRCode();
       setInterval(() => {
         progress += (interval / duration) * 100;
         document.getElementById('progress').style.width = `${progress}%`;
@@ -567,16 +542,16 @@
       isAudioOn = !isAudioOn;
       const icon = document.getElementById('audio-icon');
       if (isAudioOn) {
-        icon.className = "fa-solid fa-volume-high text-indigo-600";
+        icon.className = "fa-solid fa-volume-high text-indigo-600 text-[11px]";
         alert("ხმა ჩართულია!");
       } else {
-        icon.className = "fa-solid fa-volume-xmark text-slate-600";
+        icon.className = "fa-solid fa-volume-xmark text-slate-600 text-[11px]";
       }
     }
 
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => alert(err.message));
+        document.documentElement.requestFullscreen().catch(err => {});
       } else {
         if (document.exitFullscreen) document.exitFullscreen();
       }
